@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+body{
+  @apply bg-slate-100 text-slate-900;
+}
+
+.dark body{
+  @apply bg-slate-950 text-white;
+}

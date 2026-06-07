@@ -26,12 +26,8 @@ function SearchBar() {
         onChange={(e) =>
           setQuery(e.target.value)
         }
-<<<<<<< HEAD
-        className="flex-1 border rounded-lg px-4 py-3  min-w-0 "
-=======
         className="flex-1 border rounded-lg px-4 py-3  min-w-0  bg-white dark:bg-slate-800
         "
->>>>>>> e239fe8 (th c)
       />
 
       <button

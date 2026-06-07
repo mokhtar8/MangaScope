@@ -9,7 +9,7 @@ function ThemeToggle() {
       onClick={() =>
         setTheme(theme === "light" ? "dark" : "light")
       }
-      className="px-3 py-2 bg-gray-200 rounded"
+      className="px-3 py-2  bg-slate-200 dark:bg-slate-700 rounded"
     >
       {theme === "light" ? "🌙" : "☀️"}
     </button>

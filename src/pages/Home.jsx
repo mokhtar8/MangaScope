@@ -32,8 +32,6 @@ function Home() {
 
   return (
     <Container>
-   
-
       <h2 className="text-3xl font-bold mb-8">
         Top Manga
       </h2>

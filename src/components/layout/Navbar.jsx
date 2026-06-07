@@ -4,7 +4,11 @@ import ThemeToggle from "./ThemeToggle";
 
 function Navbar() {
   return (
+<<<<<<< HEAD
     <nav className="w-full shadow bg-white">
+=======
+    <nav className="w-full shadow  dark:bg-slate-800 bg-white">
+>>>>>>> e239fe8 (th c)
       <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-4 sm:flex-row sm:items-center
       ">
         

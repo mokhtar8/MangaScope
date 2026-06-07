@@ -6,6 +6,12 @@ function MangaCard({ manga }) {
       to={`/manga/${manga.mal_id}`}
       className="
         bg-white
+<<<<<<< HEAD
+=======
+        dark:bg-slate-800
+       text-slate-900
+       dark:text-white
+>>>>>>> e239fe8 (th c)
         rounded-xl
         overflow-hidden
         shadow-md
@@ -41,8 +47,17 @@ function MangaCard({ manga }) {
         </h3>
 
         <div className="mt-auto pt-3 ">
+<<<<<<< HEAD
           <p className="  font-medium
               text-yellow-500 text-sm">⭐ {manga.score}</p>
+=======
+          <p
+            className="  font-medium
+              text-yellow-500 text-sm"
+          >
+            ⭐ {manga.score}
+          </p>
+>>>>>>> e239fe8 (th c)
         </div>
       </div>
     </Link>

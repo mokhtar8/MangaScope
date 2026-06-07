@@ -8,7 +8,7 @@ function Pagination({
       <button
         disabled={page === 1}
         onClick={() => setPage(page - 1)}
-        className="px-5 py-2 bg-gray-200 rounded"
+        className="px-5 py-2 bg-gray-200 dark:text-black rounded"
       >
         Prev
       </button>

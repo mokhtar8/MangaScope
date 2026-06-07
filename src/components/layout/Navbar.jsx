@@ -5,16 +5,17 @@ import ThemeToggle from "./ThemeToggle";
 function Navbar() {
   return (
     <nav className="w-full shadow bg-white">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-4 sm:flex-row sm:items-center
+      ">
         
         <Link
           to="/"
-          className="text-2xl font-bold text-teal-600"
+          className="text-2xl font-bold  shrink-0 text-teal-600"
         >
           Manga App
         </Link>
 
-        <div className="flex items-center gap-6">
+        <div className="flex flex-1 items-center gap-3 min-w-0">
           <SearchBar />
           <ThemeToggle />
         </div>

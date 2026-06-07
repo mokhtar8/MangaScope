@@ -17,7 +17,7 @@ function SearchBar() {
   return (
     <form
       onSubmit={submitHandler}
-      className="flex gap-3"
+      className="flex flex-1 min-w-0 gap-3"
     >
       <input
         type="text"
@@ -26,11 +26,11 @@ function SearchBar() {
         onChange={(e) =>
           setQuery(e.target.value)
         }
-        className="flex-1 border rounded-lg px-4 py-3"
+        className="flex-1 border rounded-lg px-4 py-3  min-w-0 "
       />
 
       <button
-        className="bg-teal-600 text-white px-6 rounded-lg"
+        className="bg-teal-600 text-white px-6 rounded-lg  shrink-0"
       >
         Search
       </button>

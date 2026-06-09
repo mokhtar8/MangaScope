@@ -5,7 +5,8 @@ function MangaGrid({ mangas }) {
     <div
        className="
       grid
-      grid-cols-2
+      grid-cols-[repeat(auto-fill,minmax(225px,1fr))]
+      sm:grid-cols-2
       md:grid-cols-3
       lg:grid-cols-4
       xl:grid-cols-5

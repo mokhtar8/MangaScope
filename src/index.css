@@ -6,9 +6,9 @@
 
 
 body{
-  @apply bg-slate-100 text-slate-900;
+  @apply bg-[#5F9EA0] text-slate-900;
 }
 
 .dark body{
-  @apply bg-slate-950 text-white;
+  @apply bg-slate-950 text-gray-100;
 }

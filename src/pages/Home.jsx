@@ -1,21 +1,29 @@
-import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
+import ScrollToTopButton from "../components/ui/ScrollToTopButton";
 import { useTopManga } from "../hooks/useTopManga";
 
 import SkeletonCard from "../components/ui/SkeletonCard";
-import Container from "../components/layout/Container";
-
 import MangaGrid from "../components/manga/MangaGrid";
 import Pagination from "../components/manga/Pagination";
 
 import ErrorState from "../components/ui/ErrorState";
 
 function Home() {
-  const [page, setPage] = useState(1);
+ const [searchParams, setSearchParams] =
+    useSearchParams();
+     const page =
+    Number(searchParams.get("page")) || 1;
 
+     const setPage = (newPage) => {
+    setSearchParams({
+      page: newPage,
+    });
+  };
   const { data, isLoading, isError, error } =
     useTopManga(page);
-
+const lastPage =
+  data?.pagination?.last_visible_page ?? 1;
   if (isLoading) {
     return (
       <div className="grid grid-cols-4 gap-6">
@@ -31,7 +39,7 @@ function Home() {
   }
 
   return (
-    <Container>
+    <>
       <h2 className="text-3xl font-bold mb-8">
         Top Manga
       </h2>
@@ -42,8 +50,10 @@ function Home() {
         page={page}
         setPage={setPage}
         hasNextPage={data.pagination.has_next_page}
+         lastPage={lastPage}
       />
-    </Container>
+        <ScrollToTopButton />
+    </>
   );
 }
 

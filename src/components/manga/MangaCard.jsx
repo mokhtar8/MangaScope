@@ -5,7 +5,7 @@ function MangaCard({ manga }) {
     <Link
       to={`/manga/${manga.mal_id}`}
       className="
-        bg-white
+        bg-[#528e90]
         dark:bg-slate-800
        text-slate-900
        dark:text-white
@@ -49,12 +49,7 @@ function MangaCard({ manga }) {
           <p className="  font-medium
               text-yellow-500 text-sm">⭐ {manga.score}</p>
 
-          <p
-            className="  font-medium
-              text-yellow-500 text-sm"
-          >
-            ⭐ {manga.score}
-          </p>
+      
         </div>
       </div>
     </Link>

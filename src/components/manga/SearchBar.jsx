@@ -11,7 +11,8 @@ function SearchBar() {
 
     if (!query.trim()) return;
 
-    navigate(`/search?q=${query}`);
+    navigate(`/search?q=${query}&page=1`);
+      setQuery("");
   };
 
   return (
@@ -26,12 +27,12 @@ function SearchBar() {
         onChange={(e) =>
           setQuery(e.target.value)
         }
-        className="flex-1 border rounded-lg px-4 py-3  min-w-0  bg-white dark:bg-slate-800
+        className="flex-1 border rounded-lg px-4 py-3 placeholder:text-slate-800 dark:placeholder:text-gray-500  min-w-0  bg-[#72a7a9] dark:bg-slate-800
         "
       />
 
       <button
-        className="bg-teal-600 text-white px-6 rounded-lg  shrink-0"
+        className="bg-teal-600 text-slate-800 dark:text-gray-100 px-6 rounded-lg  shrink-0"
       >
         Search
       </button>

@@ -26,8 +26,13 @@ const lastPage =
   data?.pagination?.last_visible_page ?? 1;
   if (isLoading) {
     return (
-      <div className="grid grid-cols-4 gap-6">
-        {[...Array(8)].map((_, index) => (
+      <div className="  grid
+      grid-cols-[repeat(auto-fill,minmax(225px,1fr))]
+      sm:grid-cols-2
+      md:grid-cols-3
+      lg:grid-cols-4
+      xl:grid-cols-5 gap-6">
+        {[...Array(15)].map((_, index) => (
           <SkeletonCard key={index} />
         ))}
       </div>

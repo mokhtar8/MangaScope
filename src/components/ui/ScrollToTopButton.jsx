@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { ChevronUp } from "lucide-react";
 
 function ScrollToTopButton() {
   const [visible, setVisible] = useState(false);
@@ -29,7 +29,7 @@ function ScrollToTopButton() {
       onClick={scrollToTop}
       className="fixed bottom-6 w-12 h-12 right-6 z-50 p-3 rounded-full bg-[#467b7d] text-white shadow-lg hover:scale-110 transition"
     >
-       ↑
+     <ChevronUp size={24} />
     </button>
   );
 }

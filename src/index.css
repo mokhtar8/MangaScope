@@ -4,7 +4,9 @@
 
 
 
-
+body {
+  font-family: Vazirmatn, sans-serif;
+}
 body{
   @apply bg-[#5F9EA0] text-slate-900;
 }

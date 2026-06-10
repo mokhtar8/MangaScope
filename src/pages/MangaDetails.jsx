@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
-
+import { useState } from "react";
+import { translateSynopsis } from "../services/ai";
 import { useMangaDetails } from "../hooks/useMangaDetails";
    import BackButton from "../components/ui/BackButton";
 import Loader from "../components/ui/Loader";
@@ -10,11 +11,37 @@ function MangaDetails() {
 
   const { data: manga, isLoading, isError, error } =
     useMangaDetails(id);
-
+const [translatedText, setTranslatedText] = useState("");
+const [showPersian, setShowPersian] = useState(false);
+const [isTranslating, setIsTranslating] = useState(false);
+const [translationError, setTranslationError] = useState("");
   if (isLoading) return <Loader />;
 
   if (isError) return <ErrorState message={error.message} />;
+const handleTranslate = async () => {
+  if (translatedText) {
+    setShowPersian((prev) => !prev);
+    return;
+  }
 
+  try {
+    setTranslationError("");
+    setIsTranslating(true);
+
+    const result = await translateSynopsis(manga.synopsis);
+
+    setTranslatedText(result);
+    setShowPersian(true);
+  } catch (error) {
+    console.error(error);
+
+    setTranslationError(
+      "ترجمه انجام نشد. لطفاً دوباره تلاش کنید."
+    );
+  } finally {
+    setIsTranslating(false);
+  }
+};
   return (
 
 
@@ -79,18 +106,32 @@ function MangaDetails() {
             </div>
 
             {/* Synopsis */}
-            <div className="mt-8 max-w-3xl">
-              <h2 className="text-xl font-bold mb-3">
-                Synopsis
-              </h2>
+<div className="flex items-center justify-between mb-3">
+  <h2 className="text-xl font-bold">Synopsis</h2>
 
-              <p className="leading-8 text-slate-200 backdrop-blur-sm bg-black/20 p-5 rounded-2xl">
-                {manga.synopsis}
-              </p>
-            </div>
+  <button
+    onClick={handleTranslate}
+    disabled={isTranslating}
+    className="px-3 py-1 rounded-md bg-slate-400 my-3.5 dark:bg-slate-600 dark:hover:bg-slate-900  hover:bg-[#5f9ea0] transition"
+  >
+    {isTranslating
+      ? "..."
+      : showPersian
+      ? "🪄ترجمه"
+      : "translate🪄"}
+  </button>
+</div>
+<p className={`leading-8 text-slate-200 backdrop-blur-sm bg-black/20 p-5 rounded-2xl ${showPersian ? "tracking-normal" : ""}`} dir={showPersian ? "rtl" : "ltr"}>
+
+  {showPersian ? translatedText : manga.synopsis}
+
+</p>
+{translationError && (
+  <div className="mt-3 rounded-xl border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200">
+    {translationError}
+  </div>
+)}
           </div>
-
-        
         </div>
       </div>
     </div>

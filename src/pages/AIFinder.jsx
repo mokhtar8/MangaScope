@@ -7,43 +7,70 @@ export default function AIFinder() {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const handleSearch = async () => {
-    if (!prompt.trim()) return;
+ const handleSearch = async () => {
+  if (!prompt.trim()) return;
 
-    setLoading(true);
+  setLoading(true);
 
-    try {
-      const aiResults = await recommendManga(prompt);
+  try {
 
-      const mangas = [];
+    // 1 - exact search
+    const direct = await fetch(
+      `https://api.jikan.moe/v4/manga?q=${encodeURIComponent(prompt)}&limit=5`
+    );
 
-      for (const item of aiResults) {
-        try {
-          const res = await fetch(
-            `https://api.jikan.moe/v4/manga?q=${encodeURIComponent(
-              item.title,
-            )}&limit=1`,
-          );
+    const directJson = await direct.json();
 
-          const json = await res.json();
 
-          if (json.data?.length) {
-            mangas.push(json.data[0]);
-          }
+    if (directJson.data?.length) {
+      setResults(directJson.data);
+      return;
+    }
 
-          await new Promise((resolve) => setTimeout(resolve, 1500));
-        } catch (err) {
-          console.error(err);
-        }
+
+    // 2 - AI recommendation
+    const aiResults = await recommendManga(prompt);
+
+    const mangas = [];
+
+
+    for (const item of aiResults) {
+
+      const res = await fetch(
+        `https://api.jikan.moe/v4/manga?q=${encodeURIComponent(item.title)}&limit=3`
+      );
+
+
+      const json = await res.json();
+
+
+      if(json.data?.length){
+
+        mangas.push(json.data[0]);
+
       }
 
-      setResults(mangas);
-        setPrompt(""); 
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
+
+      await new Promise(r =>
+        setTimeout(r,1000)
+      );
+
     }
+
+
+    setResults(mangas);
+
+
+  } catch(err){
+
+    console.error(err);
+
+  } finally {
+
+    setLoading(false);
+
+  }
+
   };
   return (
     <div className="container mx-auto p-4">

@@ -8,8 +8,49 @@ const client = new OpenAI({
 
   dangerouslyAllowBrowser: true,
 });
-console.log(import.meta.env.VITE_ARVAN_API_KEY);
+export async function recommendManga(prompt) {
+  const response =
+    await client.chat.completions.create({
+      model: "DeepSeek-V3-2-hr6gu",
+      temperature: 0.8,
+      messages: [
+        {
+          role: "system",
+          content: `
+You are a manga recommendation engine.
 
+Return ONLY valid JSON.
+
+Recommend exactly 5 manga.
+
+Format:
+
+[
+ {
+   "title":"",
+   "reason":""
+ }
+]
+`,
+        },
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+    });
+
+const raw =
+  response.choices[0].message.content;
+
+
+const clean = raw
+  .replace(/```json/g, "")
+  .replace(/```/g, "")
+  .trim();
+
+return JSON.parse(clean);
+}
 export async function translateSynopsis(text) {
 
   const response = await client.chat.completions.create({
@@ -30,7 +71,7 @@ export async function translateSynopsis(text) {
     ],
   });
 
-  console.log(response);
+
 
   return response.choices[0].message.content.trim();
 }

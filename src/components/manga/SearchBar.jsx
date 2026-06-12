@@ -32,7 +32,7 @@ function SearchBar() {
       />
 
       <button
-        className="bg-teal-600 text-slate-800 dark:text-gray-100 px-6 rounded-lg  shrink-0"
+        className="bg-[#5F9EA0] text-slate-800 hover:bg-teal-700 dark:text-gray-100 px-6 rounded-lg  shrink-0"
       >
         Search
       </button>

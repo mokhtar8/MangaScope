@@ -49,12 +49,11 @@ const lastPage =
         Top Manga
       </h2>
 
-      <MangaGrid mangas={data.data} />
-
+<MangaGrid mangas={data?.data ?? []} />
       <Pagination
         page={page}
         setPage={setPage}
-        hasNextPage={data.pagination.has_next_page}
+        hasNextPage={data?.pagination?.has_next_page ?? false}
          lastPage={lastPage}
       />
         <ScrollToTopButton />

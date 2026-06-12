@@ -13,7 +13,7 @@ function Loader() {
         "
       />
 
-      <p className="mt-4 text-gray-500">
+      <p className="mt-4 text-slate-200">
         Loading...
       </p>
     </div>
